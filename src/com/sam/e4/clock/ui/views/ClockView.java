@@ -50,7 +50,8 @@ public class ClockView extends ViewPart {
         final Canvas clock3 = new ClockWidget(parent, SWT.NONE, new RGB(0, 0, 255));
         clock3.setLayoutData(new RowData(100, 100));
         
-        this.timezones = new Combo(parent, SWT.SIMPLE);
+        // timezone 콤보박스 생성
+        this.timezones = new Combo(parent, SWT.DROP_DOWN);
         this.timezones.setVisibleItemCount(5);
         String[] ids = TimeZone.getAvailableIDs();
         Stream.of(ids).forEach(s -> timezones.add(s));
