@@ -44,15 +44,17 @@ public class ClockWidget extends Canvas {
 
         super(parent, style);
         
-        // FIXME 누수가 되고 있어요
+        // 누수가 되고 있어요
         color = new Color(parent.getDisplay(), rgb);
 
         // 캔버스에 페인트 이벤트리스너를 등록한다.
         this.addPaintListener(e -> {
+        	// 화면을 다시 그릴 때 paint이벤트가 발생한다.
             paintControl(e);
         });
         
         // 위젯이 사라질 때 발생하는 이벤트
+        // color 객체를 직접 dispose하여 메모리 누수를 방지한다.
         this.addDisposeListener(e -> {
     		if (this.color != null && !color.isDisposed()) {
     			color.dispose();
@@ -82,12 +84,7 @@ public class ClockWidget extends Canvas {
     }
 
     /**
-     * <p>
-     * <b>이름: </b>메소드 한글명
-     * 
-     * <p>
-     * 메소드의 역할(책임)을 설명하세요.
-     * 
+     * 도형을 그린다. 
      * @param e
      */
     private void paintControl(PaintEvent e) {
