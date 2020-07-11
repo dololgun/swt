@@ -6,7 +6,8 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sam.e4.clock.ui.Activator
 Bundle-Vendor: SAM
 Require-Bundle: org.eclipse.ui,
-  org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.ui.views;bundle-version="3.9.400"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: com.sam.e4.clock.ui
 Bundle-ActivationPolicy: lazy
