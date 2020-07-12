@@ -24,6 +24,7 @@ import org.eclipse.ui.views.properties.IPropertySource;
 
 import com.sam.e4.clock.ui.internal.TimeZoneComparator;
 import com.sam.e4.clock.ui.internal.TimeZoneDialog;
+import com.sam.e4.clock.ui.internal.TimeZoneSelectionListener;
 import com.sam.e4.clock.ui.internal.TimeZoneViewerComparator;
 import com.sam.e4.clock.ui.internal.TimeZoneViewerFilter;
 
@@ -31,6 +32,7 @@ public class TimeZoneTreeView extends ViewPart {
 
 	// jface 에서 제공하는 트리뷰어를 사용한다.
 	private TreeViewer treeViewer;
+	private TimeZoneSelectionListener selectionListener;
 
 	@Override
 	public void createPartControl(Composite parent) {
@@ -77,12 +79,29 @@ public class TimeZoneTreeView extends ViewPart {
 		
 		System.out.println("Adapter is " + Platform.getAdapterManager().getAdapter(TimeZone.getDefault(), IPropertySource.class));		
 		getSite().setSelectionProvider(treeViewer);
+		
+		// 셀력션 리스너 생성
+		selectionListener = new TimeZoneSelectionListener(treeViewer, getSite().getPart());
+		
+		// 샐력션 리스너 워크벤치.셀렉션 서비스에 등록
+		getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(selectionListener);
 	}
 
 	@Override
 	public void setFocus() {
 
 		treeViewer.getControl().setFocus();
+	}
+
+	@Override
+	public void dispose() {
+
+		// 셀렉션 리스너 삭제
+		if (selectionListener != null) {
+			getSite().getWorkbenchWindow().getSelectionService().removeSelectionListener(selectionListener);
+			selectionListener = null;
+		}
+		super.dispose();
 	}
 
 }
