@@ -4,11 +4,10 @@ import java.util.TimeZone;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
@@ -54,27 +53,28 @@ public class TimeZoneTableView extends ViewPart {
 		/*
 		 * 컨텍스트 메뉴 등록
 		 */
-		MenuManager manager = new MenuManager("#PopupMenu");
-		Menu menu = manager.createContextMenu(tableViewer.getControl());
-		tableViewer.getControl().setMenu(menu);
-
-		/*
-		 *  비어있는 메뉴는 등록을 하여도 아무런 효과를 내지 않는다. 이를 위해 액션을 생성하여 등록한다. 하지만 액션은 deprecated 되었다.
-		 *  대체하는 것은 command, handler, menu 가 필요하다
-		 *  command는 plugin.xml의 extension point에서 추가한다
-		 */
-		Action deprecated = new Action() {
-
-			@Override
-			public void run() {
-
-				MessageDialog.openInformation(null, "Hello", "World");
-			}
-		};
-		deprecated.setText("Hello");
-		manager.add(deprecated);
+		hookContextMenu(tableViewer);
 		
-		
+//		hookContextMenu(tableViewer); 가 생기면서 다음 로직은 다 필요 없어졌다.
+//		MenuManager manager = new MenuManager("#PopupMenu");
+//		Menu menu = manager.createContextMenu(tableViewer.getControl());
+//		tableViewer.getControl().setMenu(menu);
+//
+//		/*
+//		 *  비어있는 메뉴는 등록을 하여도 아무런 효과를 내지 않는다. 이를 위해 액션을 생성하여 등록한다. 하지만 액션은 deprecated 되었다.
+//		 *  대체하는 것은 command, handler, menu 가 필요하다
+//		 *  command는 plugin.xml의 extension point에서 추가한다
+//		 */
+//		Action deprecated = new Action() {
+//
+//			@Override
+//			public void run() {
+//
+//				MessageDialog.openInformation(null, "Hello", "World");
+//			}
+//		};
+//		deprecated.setText("Hello");
+//		manager.add(deprecated);
 	}
 
 	@Override
@@ -92,6 +92,13 @@ public class TimeZoneTableView extends ViewPart {
 			selectionListener = null;
 		}
 		super.dispose();
+	}
+	
+	private void hookContextMenu(Viewer viewer) {
+		MenuManager manager = new MenuManager("#PopupMenu");
+		Menu menu = manager.createContextMenu(viewer.getControl());
+		viewer.getControl().setMenu(menu);
+		getSite().registerContextMenu(manager, viewer);
 	}
 
 }

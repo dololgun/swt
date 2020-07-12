@@ -31,6 +31,11 @@ public class TimeZoneSelectionListener implements ISelectionListener {
 			return;
 		}
 		
+		// 변환가능한지 확인
+		if (!(sel instanceof IStructuredSelection) || sel.isEmpty()) {
+			return;
+		}
+		
 		// 이벤트로 전달된 셀렉션
 		Object selected = ((IStructuredSelection)sel).getFirstElement();
 		

@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.TimeZone;
 
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
@@ -18,6 +19,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.ui.views.properties.IPropertySource;
@@ -85,6 +87,11 @@ public class TimeZoneTreeView extends ViewPart {
 		
 		// 샐력션 리스너 워크벤치.셀렉션 서비스에 등록
 		getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(selectionListener);
+		
+		/*
+		 * 컨텍스트 메뉴 등록
+		 */
+		hookContextMenu(treeViewer);
 	}
 
 	@Override
@@ -104,4 +111,10 @@ public class TimeZoneTreeView extends ViewPart {
 		super.dispose();
 	}
 
+	private void hookContextMenu(Viewer viewer) {
+		MenuManager manager = new MenuManager("#PopupMenu");
+		Menu menu = manager.createContextMenu(viewer.getControl());
+		viewer.getControl().setMenu(menu);
+		getSite().registerContextMenu(manager, viewer);
+	}
 }
