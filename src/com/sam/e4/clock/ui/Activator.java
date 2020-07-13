@@ -28,6 +28,11 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		
+		// 플러그인이 실행된 횟수를 저장한다.
+		int launchCount = getPreferenceStore().getInt("launchCount");
+		System.out.println("I have been launched " + launchCount + " times");
+		getPreferenceStore().setValue("launchCount", launchCount+1);
 	}
 
 	/*
