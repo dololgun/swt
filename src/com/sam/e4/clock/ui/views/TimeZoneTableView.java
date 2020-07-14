@@ -5,14 +5,19 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.ui.IMemento;
+import org.eclipse.ui.IViewSite;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
+import com.sam.e4.clock.ui.Activator;
 import com.sam.e4.clock.ui.internal.TimeZoneColumnDisplayName;
 import com.sam.e4.clock.ui.internal.TimeZoneColumnID;
 import com.sam.e4.clock.ui.internal.TimeZoneColumnOffset;
@@ -24,6 +29,7 @@ public class TimeZoneTableView extends ViewPart {
 	// jface 에서 제공하는 트리뷰어를 사용한다.
 	private TableViewer tableViewer;
 	private TimeZoneSelectionListener selectionListener;
+	private int mementoCount;
 
 	@Override
 	public void createPartControl(Composite parent) {
@@ -39,7 +45,8 @@ public class TimeZoneTableView extends ViewPart {
 		new TimeZoneColumnSummerTime().addColumnTo(tableViewer);
 
 		// 테이블 viewer에 데이터 입력
-		tableViewer.setInput(Stream.of(TimeZone.getAvailableIDs()).map(TimeZone::getTimeZone).collect(Collectors.toList()).toArray());
+		tableViewer.setInput(Stream.of(TimeZone.getAvailableIDs()).map(TimeZone::getTimeZone)
+				.collect(Collectors.toList()).toArray());
 
 		// 셀렉션 프로바이더를 테이블 뷰어로 전달
 		getSite().setSelectionProvider(tableViewer);
@@ -51,10 +58,10 @@ public class TimeZoneTableView extends ViewPart {
 		getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(selectionListener);
 
 		/*
-		 * 컨텍스트 메뉴 등록
+		 * 컨텍스트 메뉴 등록 tableviewer에서 마우스 우클릭하면 생기는 컨텍스트 메뉴를 등록한다.
 		 */
 		hookContextMenu(tableViewer);
-		
+
 //		hookContextMenu(tableViewer); 가 생기면서 다음 로직은 다 필요 없어졌다.
 //		MenuManager manager = new MenuManager("#PopupMenu");
 //		Menu menu = manager.createContextMenu(tableViewer.getControl());
@@ -75,6 +82,14 @@ public class TimeZoneTableView extends ViewPart {
 //		};
 //		deprecated.setText("Hello");
 //		manager.add(deprecated);
+
+		/*
+		 * 메멘토 대신 사용할 수 있는 dialogSettings
+		 */
+		final IDialogSettings settings = Activator.getDefault().getDialogSettings();
+		
+		System.out.println("myMementoKey = " + mementoCount);
+
 	}
 
 	@Override
@@ -93,12 +108,35 @@ public class TimeZoneTableView extends ViewPart {
 		}
 		super.dispose();
 	}
-	
+
 	private void hookContextMenu(Viewer viewer) {
 		MenuManager manager = new MenuManager("#PopupMenu");
 		Menu menu = manager.createContextMenu(viewer.getControl());
 		viewer.getControl().setMenu(menu);
 		getSite().registerContextMenu(manager, viewer);
+	}
+
+	/**
+	 * view가 열릴 때 발생하는 이벤트 saveState이벤트에서 memento에 저장했던 내용을 그대로 불러올 수 있다.
+	 */
+	@Override
+	public void init(IViewSite site, IMemento memento) throws PartInitException {
+		// TODO Auto-generated method stub
+		super.init(site, memento);
+
+		if (memento != null) {
+			mementoCount = memento.getInteger("myMementoKey");
+		}
+	}
+
+	/**
+	 * workbench가 close될때 발생하는 이벤트 특정 view의 상태를 memento에 저장할 수 있다.
+	 */
+	@Override
+	public void saveState(IMemento memento) {
+		// TODO Auto-generated method stub
+		super.saveState(memento);
+		memento.putInteger("myMementoKey", mementoCount + 1);
 	}
 
 }

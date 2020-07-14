@@ -1,5 +1,7 @@
 package com.sam.e4.clock.ui;
 
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -31,7 +33,11 @@ public class Activator extends AbstractUIPlugin {
 		
 		// 플러그인이 실행된 횟수를 저장한다.
 		int launchCount = getPreferenceStore().getInt("launchCount");
-		System.out.println("I have been launched " + launchCount + " times");
+		
+		// 이클립스 preference 사용
+		IEclipsePreferences eclipsePreferences = InstanceScope.INSTANCE.getNode(PLUGIN_ID);
+		int launchCount2 = eclipsePreferences.getInt("launchCount", -1);
+		System.out.println("I have been launched " + launchCount + " times and " + launchCount2);
 		getPreferenceStore().setValue("launchCount", launchCount+1);
 	}
 
