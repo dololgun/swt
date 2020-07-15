@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension point="org.eclipse.ui.editors">
+		<editor name="Minimark" extensions="minimark" default="false" class="com.sam.e4.minimark.ui.MinimarkEditor" id="com.sam.e4.minimark.ui.minimarkEditor" />
+	</extension>
+	
+	<extension id="MinimarkBuilder" name="Sample Project Builder" point="org.eclipse.core.resources.builders">
+		<builder hasNature="false" callOnEmptyDelta="false" isConfigurable="false" supportsConfigurations="false">
+			<run class="com.sam.e4.minimark.ui.MinimarkBuilder" />
+		</builder>
+	</extension>
+
+</plugin>
