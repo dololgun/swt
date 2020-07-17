@@ -10,5 +10,21 @@
 			<run class="com.sam.e4.minimark.ui.MinimarkBuilder" />
 		</builder>
 	</extension>
-
+	<!-- 네이처익스텐션을 이용하여 프로젝트에 minimark nature를 추가한다. -->
+	<extension point="org.eclipse.core.resources.natures" id="MinimarkNature">
+		<runtime>
+			<run class="com.sam.e4.minimark.ui.MinimarkNature" />
+		</runtime>
+	</extension>
+	
+	<!-- add command in order to access project nature -->
+	<extension point="org.eclipse.ui.commands">
+		<command name="Add Minimark Nature" defaultHandler="com.sam.e4.minimark.ui.AddMinimarkHandler" id="com.sam.e4.minimark.ui.AddMinimarkNature" />
+	</extension>
+	<!-- add menu and put command that was added above into menu-->
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution allPopups="false" locationURI="popup:org.eclipse.ui.projectConfigure?after=additions">
+			<command label="Add Minimark Nature" style="push" commandId="com.sam.e4.minimark.ui.AddMinimarkNature" />
+		</menuContribution>
+	</extension>
 </plugin>

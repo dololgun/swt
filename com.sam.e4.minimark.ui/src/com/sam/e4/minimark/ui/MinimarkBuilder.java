@@ -23,6 +23,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
  * @author leegeonho
  */
 public class MinimarkBuilder extends IncrementalProjectBuilder {
+	
+	// 네이처와 상호작용하기 위해 ID상수를 추가한다.
+	public static final String ID = "com.sam.e4.minimark.ui.MinimarkBuilder";
 
 	@Override
 	protected IProject[] build(int kind, Map<String, String> args, IProgressMonitor monitor) throws CoreException {
