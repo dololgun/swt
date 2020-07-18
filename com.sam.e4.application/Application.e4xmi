@@ -4,6 +4,7 @@
     <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="com.sam.e4.application.partsashcontainer.sample">
       <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="com.sam.e4.application.partstack.sample">
         <children xsi:type="basic:Part" xmi:id="_BNAxwMjPEeqLrOESB2cLcg" elementId="com.sam.e4.application.part.hello" contributionURI="bundleclass://com.sam.e4.application/com.sam.e4.application.parts.Hello" label="Hello"/>
+        <children xsi:type="basic:Part" xmi:id="_TPmaMMjfEeqLrOESB2cLcg" elementId="com.sam.e4.application.part.rainbow" contributionURI="bundleclass://com.sam.e4.application/com.sam.e4.application.parts.Rainbow" label="Rainbow"/>
       </children>
     </children>
     <mainMenu xmi:id="_6wlLicgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.menu">
@@ -20,6 +21,29 @@
       <children xsi:type="menu:ToolBar" xmi:id="_6wlLlsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.toolbar">
         <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLmMgZEeSyMNYR5xypkQ" elementId="com.sam.e4.application.handleditem.trimbar.top.save" iconURI="platform:/plugin/com.sam.e4.application/icons/save_edit.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
         <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLl8gZEeSyMNYR5xypkQ" elementId="com.sam.e4.application.handleditem.trimbar.top.open" iconURI="platform:/plugin/com.sam.e4.application/icons/open_in_app.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
+      </children>
+    </trimBars>
+  </children>
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_PlmfkMjdEeqLrOESB2cLcg" elementId="com.sam.e4.application.window.main" visible="false" label="my eclipase application" width="500" height="400">
+    <children xsi:type="basic:PartSashContainer" xmi:id="_PlmfkcjdEeqLrOESB2cLcg" elementId="com.sam.e4.application.partsashcontainer.sample">
+      <children xsi:type="basic:PartStack" xmi:id="_PlmfksjdEeqLrOESB2cLcg" elementId="com.sam.e4.application.partstack.sample">
+        <children xsi:type="basic:Part" xmi:id="_Plmfk8jdEeqLrOESB2cLcg" elementId="com.sam.e4.application.part.hello" contributionURI="bundleclass://com.sam.e4.application/com.sam.e4.application.parts.Hello" label="Hello"/>
+      </children>
+    </children>
+    <mainMenu xmi:id="_PlmflMjdEeqLrOESB2cLcg" elementId="org.eclipse.ui.main.menu">
+      <children xsi:type="menu:Menu" xmi:id="_PlmflcjdEeqLrOESB2cLcg" elementId="file" label="File">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_PlmflsjdEeqLrOESB2cLcg" elementId="com.sam.e4.application.handleditem.file.open" label="Open" iconURI="platform:/plugin/com.sam.e4.application/icons/open_in_app.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_Plmfl8jdEeqLrOESB2cLcg" elementId="com.sam.e4.application.handleditem.save" label="Save" iconURI="platform:/plugin/com.sam.e4.application/icons/save_edit.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_PlmfmMjdEeqLrOESB2cLcg" elementId="com.sam.e4.application.handleditem.quit" label="Quit" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_PlmfmcjdEeqLrOESB2cLcg" elementId="help" label="Help">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_PlmfmsjdEeqLrOESB2cLcg" elementId="com.sam.e4.application.handleditem.about" label="About" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
+      </children>
+    </mainMenu>
+    <trimBars xmi:id="_Plmfm8jdEeqLrOESB2cLcg" elementId="com.sam.e4.application.trimbar.top">
+      <children xsi:type="menu:ToolBar" xmi:id="_PlmfnMjdEeqLrOESB2cLcg" elementId="org.eclipse.ui.main.toolbar">
+        <children xsi:type="menu:HandledToolItem" xmi:id="_PlmfncjdEeqLrOESB2cLcg" elementId="com.sam.e4.application.handleditem.trimbar.top.save" iconURI="platform:/plugin/com.sam.e4.application/icons/save_edit.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_PlmfnsjdEeqLrOESB2cLcg" elementId="com.sam.e4.application.handleditem.trimbar.top.open" iconURI="platform:/plugin/com.sam.e4.application/icons/open_in_app.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
       </children>
     </trimBars>
   </children>

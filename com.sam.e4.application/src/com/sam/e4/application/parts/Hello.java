@@ -1,11 +1,17 @@
 package com.sam.e4.application.parts;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+import javax.inject.Named;
 
+import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
+import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.osgi.service.log.LogService;
 
 /**
  * .e4xmi파일을 전용뷰어로 보기 위해서 e4 tool 설치가 필요하다.
@@ -27,6 +33,18 @@ public class Hello {
 
 	private Label label;
 
+	// log를 남기도록 해주는 osgi 제공 서비스
+	// e4 runtime infrastructure do DI
+	@Inject
+	private LogService log;
+
+	// window객체 얻기
+	// window객체도 injection을 통하여 얻을 수 있다.
+	// 하지만, e4에서는 GUI객체를 직접 참조하기보다 model을 통하여 접근하는 것을 추천한다.
+	// 예를 들어, MPart, MWindow, MPerspetive는 GUI객체에 접근하기 위한 모델이다.
+	@Inject
+	private MWindow window;
+
 	/**
 	 * e4 개발은 스프링 프레임워크 기반의 개발과 비슷한 환경을 제공한다. postConstuct 어노테이션은 객체가 생성된 이후 프레임워크에서
 	 * 자동으로 해당 메소드를 호출한다. 이런 효과를 내기 위해 별도의 인터페이스를 확장할 필요가 없는 효과를 준다.
@@ -35,12 +53,26 @@ public class Hello {
 	public void create(Composite parent) {
 
 		label = new Label(parent, SWT.NONE);
-		label.setText("Hello");
+		label.setText(window.getLabel());
+
+		// log를 남긴다.
+		log.log(LogService.LOG_ERROR, "Hello");
 	}
 
 	@Focus
 	public void focus() {
 
 		label.setFocus();
+	}
+
+	/**
+	 * 셀렉션 서비스로부터 셀렉션 이벤트를 받기 위해 inject를 사용한다.
+	 */
+	@Inject
+	@Optional
+	public void setSelection(@Named(IServiceConstants.ACTIVE_SELECTION) Object selection) {
+		if (selection != null) {
+			label.setText(selection.toString());
+		}
 	}
 }
