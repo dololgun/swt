@@ -9,6 +9,7 @@ import java.io.OutputStreamWriter;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
@@ -74,6 +75,11 @@ public class MinimarkVisitor implements IResourceProxyVisitor, IResourceDeltaVis
 	}
 
 	private void processResource(IResource resource) throws CoreException {
+		
+		/*
+		 * 프로젝트와 연관된 모든 마커를 삭제한다.
+		 */
+		resource.deleteMarkers("com.sam.e4.minimark.ui.MinimarkMarker", true, IResource.DEPTH_INFINITE);
 
 		/*
 		 *  파일 삭제 이벤트가 발생할 경우에 대비하여 리소스의 존재여부를 체크하여 nullpointerException을 방지한다
@@ -99,6 +105,18 @@ public class MinimarkVisitor implements IResourceProxyVisitor, IResourceDeltaVis
 				MinimarkTranslator.convert(new InputStreamReader(in), new OutputStreamWriter(baos));
 
 				ByteArrayInputStream contents = new ByteArrayInputStream(baos.toByteArray());
+				
+				if (baos.size() < 100) {
+					System.out.println("Minimark file is emtpy");
+//					IMarker marker = resource.createMarker(IMarker.PROBLEM);
+					// maker를 사용하기 위해 익스텐션에 설정한 마커의 ID를 추가한다.
+					IMarker marker = resource.createMarker("com.sam.e4.minimark.ui.MinimarkMarker");
+					marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
+					marker.setAttribute(IMarker.MESSAGE, "Minimark file is empty");
+					marker.setAttribute(IMarker.LINE_NUMBER, 0);
+					marker.setAttribute(IMarker.CHAR_START, 0);
+					marker.setAttribute(IMarker.CHAR_END, 0);
+				}
 
 				if (htmlFile.exists()) {
 					htmlFile.setContents(contents, true, false, null);

@@ -27,4 +27,9 @@
 			<command label="Add Minimark Nature" style="push" commandId="com.sam.e4.minimark.ui.AddMinimarkNature" />
 		</menuContribution>
 	</extension>
+	<!-- 다른 타입과 별개로 동작하기 위해 marker type을 생성한다. -->
+	<extension point="org.eclipse.core.resources.markers" id="com.sam.e4.minimark.ui.MinimarkMarker" name="Minimark Marker">
+		<persistent value="false" />
+		<super type="org.eclipse.core.resources.problemmarker" />		
+	</extension>
 </plugin>
