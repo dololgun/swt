@@ -5,13 +5,17 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.eclipse.e4.core.di.annotations.Optional;
+import org.eclipse.e4.core.di.extensions.EventTopic;
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.di.UIEventTopic;
 import org.eclipse.e4.ui.model.application.ui.basic.MWindow;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.osgi.service.log.LogService;
+
+import com.sam.e4.application.RandomFuntion;
 
 /**
  * .e4xmi파일을 전용뷰어로 보기 위해서 e4 tool 설치가 필요하다.
@@ -44,6 +48,19 @@ public class Hello {
 	// 예를 들어, MPart, MWindow, MPerspetive는 GUI객체에 접근하기 위한 모델이다.
 	@Inject
 	private MWindow window;
+	
+	//  
+	// 
+	/**
+	 * 컨텍스트 펑션 서비스를 e4런타임에 등록하고 DI받아 사용할 수 있다.
+	 * {@link RandomFuntion}를 참조한다. 
+	 * 이 서비스를 등록하기 위해 random.xml을 생성하였고 MANIFEST.MF 에 서비스로 추가하였다.
+	 * @param parent
+	 */
+	@Inject
+	@Named("math.random")
+	private Object random;
+	
 
 	/**
 	 * e4 개발은 스프링 프레임워크 기반의 개발과 비슷한 환경을 제공한다. postConstuct 어노테이션은 객체가 생성된 이후 프레임워크에서
@@ -53,7 +70,7 @@ public class Hello {
 	public void create(Composite parent) {
 
 		label = new Label(parent, SWT.NONE);
-		label.setText(window.getLabel());
+		label.setText(window.getLabel() + " " + random);
 
 		// log를 남긴다.
 		log.log(LogService.LOG_ERROR, "Hello");
@@ -74,5 +91,15 @@ public class Hello {
 		if (selection != null) {
 			label.setText(selection.toString());
 		}
+	}
+	
+	/**
+	 * {@link EventTopic}을 사용하면 non ui thread를 사용하기 때문에 오류가 발생한다.
+	 * @param data
+	 */
+	@Inject
+	@Optional
+	public void receiveEvent(@UIEventTopic("rainbow/color") String data) {
+		label.setText(data + " by event broker");
 	}
 }
