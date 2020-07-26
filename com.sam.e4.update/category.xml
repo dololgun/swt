@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/com.sam.e4.feature_1.0.0.202007202302.jar" id="com.sam.e4.feature" version="1.0.0.202007202302">
+   <feature id="com.sam.e4.feature" version="0.0.0">
       <category name="com.sam.e4.category"/>
    </feature>
    <category-def name="com.sam.e4.category" label="SAM Example E4 Category">

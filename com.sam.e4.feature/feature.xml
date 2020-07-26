@@ -28,4 +28,11 @@
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="com.sam.e4.application"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>

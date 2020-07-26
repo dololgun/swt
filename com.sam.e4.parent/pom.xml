@@ -1,20 +1,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.sam</groupId>
-    <artifactId>com.sam.e4.parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <relativePath>../com.sam.e4.parent/pom.xml</relativePath>
-  </parent>
-  <artifactId>com.sam.e4.clock.ui</artifactId>
-  <packaging>eclipse-plugin</packaging>
+  <groupId>com.sam</groupId>
+  <artifactId>com.sam.e4.parent</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+  <properties>
+    <tycho-version>1.7.0</tycho-version>
+    <eclipse>http://download.eclipse.org/releases/2019-03</eclipse>
+  </properties>
+  
   <repositories>
     <repository>
       <id>2019-03</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/releases/2019-03</url>
+      <url>${eclipse}</url>
     </repository>
   </repositories>
+
+  <modules>
+    <module>../com.sam.e4.clock.ui</module>
+    <module>../com.sam.e4.feature</module>
+    <module>../com.sam.e4.update</module>
+    <module>../com.sam.e4.application</module>
+    <module>../com.sam.e4.product</module>
+  </modules>
+    
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -29,7 +40,7 @@
       <plugin>
         <groupId>org.eclipse.tycho</groupId>
         <artifactId>tycho-maven-plugin</artifactId>
-        <version>1.7.0</version>
+        <version>${tycho-version}</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>
