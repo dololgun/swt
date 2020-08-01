@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="com.sam.e4.application" 
-   uid="com.sam.e4.application.product" 
-   id="com.sam.e4.application.product" 
-   application="org.eclipse.e4.ui.workbench.swt.E4Application" 
-   version="1.0.0.qualifier" 
-   useFeatures="false" 
-   includeLaunchers="true">
+<product name="com.sam.e4.application" uid="com.sam.e4.application.product" id="com.sam.e4.application.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
-   <features>
-      <feature id="com.sam.e4.feature" version="0.0.0" />
-      <feature id="org.eclipse.rcp" version="0.0.0" />
-   </features>
-   
+
    <configIni use="default">
    </configIni>
 
@@ -26,9 +16,21 @@
 
    <windowImages/>
 
+
+   <launcher>
+      <win useIco="false">
+         <bmp/>
+      </win>
+   </launcher>
+
+
+   <vm>
+   </vm>
+
+
    <plugins>
-      <plugin id="com.sam.e4.application"/>
       <plugin id="com.ibm.icu"/>
+      <plugin id="com.sam.e4.application"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
       <plugin id="org.apache.batik.constants"/>
@@ -100,5 +102,18 @@
       <plugin id="org.w3c.dom.svg"/>
    </plugins>
 
+   <features>
+      <feature id="com.sam.e4.feature"/>
+      <feature id="org.eclipse.rcp"/>
+      <feature id="org.eclipse.e4.rcp" installMode="root"/>
+   </features>
+
+
+   <preferencesInfo>
+      <targetfile overwrite="false"/>
+   </preferencesInfo>
+
+   <cssInfo>
+   </cssInfo>
 
 </product>
