@@ -3,18 +3,11 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="/Applications/Eclipse JEE.app/Contents/Eclipse/plugins/org.eclipse.swt_3.115.100.v20201202-1103.jar"/>
-	<classpathentry kind="lib" path="/Applications/Eclipse JEE.app/Contents/Eclipse/plugins/org.eclipse.swt_3.115.0.v20200831-1002.jar"/>
-	<classpathentry kind="lib" path="/Applications/Eclipse JEE.app/Contents/Eclipse/plugins/org.eclipse.swt.browser.chromium.cocoa.macosx.x86_64_3.115.0.v20200831-1002.jar"/>
 	<classpathentry kind="lib" path="/Applications/Eclipse JEE.app/Contents/Eclipse/plugins/org.eclipse.swt.browser.chromium.cocoa.macosx.x86_64_3.115.100.v20201202-1103.jar"/>
-	<classpathentry kind="lib" path="/Applications/Eclipse JEE.app/Contents/Eclipse/plugins/org.eclipse.swt.cocoa.macosx.x86_64_3.115.0.v20200831-1002.jar"/>
 	<classpathentry kind="lib" path="/Applications/Eclipse JEE.app/Contents/Eclipse/plugins/org.eclipse.swt.cocoa.macosx.x86_64_3.115.100.v20201202-1103.jar"/>
-	<classpathentry kind="lib" path="/Applications/Eclipse JEE.app/Contents/Eclipse/plugins/org.eclipse.jface_3.21.0.v20200821-1458.jar"/>
 	<classpathentry kind="lib" path="/Applications/Eclipse JEE.app/Contents/Eclipse/plugins/org.eclipse.jface_3.22.0.v20201106-0834.jar"/>
-	<classpathentry kind="lib" path="/Applications/Eclipse JEE.app/Contents/Eclipse/plugins/org.eclipse.jface.databinding_1.12.0.v20200717-1533.jar"/>
 	<classpathentry kind="lib" path="/Applications/Eclipse JEE.app/Contents/Eclipse/plugins/org.eclipse.jface.databinding_1.12.100.v20201014-0742.jar"/>
-	<classpathentry kind="lib" path="/Applications/Eclipse JEE.app/Contents/Eclipse/plugins/org.eclipse.jface.notifications_0.2.0.v20200810-0826.jar"/>
 	<classpathentry kind="lib" path="/Applications/Eclipse JEE.app/Contents/Eclipse/plugins/org.eclipse.jface.notifications_0.2.100.v20201130-1828.jar"/>
-	<classpathentry kind="lib" path="/Applications/Eclipse JEE.app/Contents/Eclipse/plugins/org.eclipse.jface.text_3.16.400.v20200807-0831.jar"/>
 	<classpathentry kind="lib" path="/Applications/Eclipse JEE.app/Contents/Eclipse/plugins/org.eclipse.jface.text_3.16.500.v20201112-1545.jar"/>
 	<classpathentry kind="lib" path="/Applications/Eclipse JEE.app/Contents/Eclipse/plugins/org.eclipse.equinox.common_3.14.0.v20201102-2053.jar"/>
 	<classpathentry kind="lib" path="/Applications/Eclipse JEE.app/Contents/Eclipse/plugins/org.eclipse.core.runtime_3.20.0.v20201027-1526.jar"/>

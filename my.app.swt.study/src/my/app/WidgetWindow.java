@@ -1,9 +1,12 @@
 package my.app;
 
 import org.eclipse.jface.window.ApplicationWindow;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.TabItem;
 
 /**
  * @author geonho
@@ -24,6 +27,16 @@ public class WidgetWindow extends ApplicationWindow {
 
         getShell().setText("나의 위젯 윈도우");
         parent.setSize(400, 250);
+        
+        TabFolder tf = new TabFolder(parent, SWT.NONE);
+        
+        TabItem tabCh3 = new TabItem(tf, SWT.NONE);
+        tabCh3.setText("chapter 3");
+        tabCh3.setControl(new Ch3Composite(tf));
+
+        TabItem tabCh4 = new TabItem(tf, SWT.NONE);
+        tabCh4.setText("chapter 4");
+        tabCh4.setControl(null);
 
         return parent;
     }
