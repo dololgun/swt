@@ -26,7 +26,7 @@ public class WidgetWindow extends ApplicationWindow {
     protected Control createContents(Composite parent) {
 
         getShell().setText("나의 위젯 윈도우");
-        parent.setSize(400, 250);
+        parent.setSize(600, 250);
         
         TabFolder tf = new TabFolder(parent, SWT.NONE);
         
@@ -36,7 +36,7 @@ public class WidgetWindow extends ApplicationWindow {
 
         TabItem tabCh4 = new TabItem(tf, SWT.NONE);
         tabCh4.setText("chapter 4");
-        tabCh4.setControl(null);
+        tabCh4.setControl(new Ch4Composite(tf));
 
         return parent;
     }

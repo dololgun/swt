@@ -34,7 +34,7 @@ public class Ch3Composite extends Composite {
         Ch3SashForm ch3SashForm = new Ch3SashForm(this);
         ch3SashForm.setLocation(150, 20);
         ch3SashForm.pack();
-        
+
         this.pack();
     }
 
