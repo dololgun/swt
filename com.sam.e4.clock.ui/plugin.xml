@@ -4,9 +4,24 @@
 
 	<extension point="org.eclipse.ui.views">
 		<category name="Timekeeping" id="com.sam.e4.clock.ui"/>
-		<view name="Clock View" inject="true" icon="icons/sample.png" category="com.sam.e4.clock.ui" class="com.sam.e4.clock.ui.views.ClockView" id="com.sam.e4.clock.ui.views.ClockView" />
-		<view name="Time Zone Tree View" inject="true" icon="icons/sample.png" category="com.sam.e4.clock.ui" class="com.sam.e4.clock.ui.views.TimeZoneTreeView" id="com.sam.e4.clock.ui.views.TimeZoneTreeView" />
-		<view name="Time Zone Table View" inject="true" icon="icons/sample.png" category="com.sam.e4.clock.ui" class="com.sam.e4.clock.ui.views.TimeZoneTableView" id="com.sam.e4.clock.ui.views.TimeZoneTableView" />
+		<view name="Clock View"
+            inject="true" 
+            icon="icons/sample.png" 
+            category="com.sam.e4.clock.ui" 
+            class="com.sam.e4.clock.ui.views.ClockView" 
+            id="com.sam.e4.clock.ui.views.ClockView" />
+		<view name="Time Zone Tree View" 
+		      inject="true" 
+		      icon="icons/sample.png" 
+		      category="com.sam.e4.clock.ui" 
+		      class="com.sam.e4.clock.ui.views.TimeZoneTreeView" 
+		      id="com.sam.e4.clock.ui.views.TimeZoneTreeView" />
+		<view name="Time Zone Table View" 
+		      inject="true" 
+		      icon="icons/sample.png" 
+		      category="com.sam.e4.clock.ui" 
+		      class="com.sam.e4.clock.ui.views.TimeZoneTableView" 
+		      id="com.sam.e4.clock.ui.views.TimeZoneTableView" />
 	</extension>
 	   
 	<extension point="org.eclipse.core.runtime.adapters">
@@ -17,18 +32,24 @@
 	
 	<!-- 커맨드를 정의한다.  -->
 	<extension point="org.eclipse.ui.commands">
-         <command name="Hello" description="Says Hello World" id="com.sam.e4.clock.ui.command.hello" />
-         <command name="Show the Time" description="Show the Time" id="com.sam.e4.clock.ui.command.showTheTime" />
+        <command name="Hello" 
+            id="com.sam.e4.clock.ui.command.hello"
+            description="Says Hello World" />
+        <command name="Show the Time" 
+            id="com.sam.e4.clock.ui.command.showTheTime"
+            description="Show the Time" />
 	</extension>
 	
 	<!-- 정의한 커맨드에 핸들러를 매핑하여 커맨드가 호출되면 해당 핸들러가 동작한다. 우리는 핸들러의 커맨드의 동작을 구현한다. -->
 	<extension point="org.eclipse.ui.handlers">
-         <handler class="com.sam.e4.clock.ui.handlers.HelloHandler" commandId="com.sam.e4.clock.ui.command.hello">
+        <handler class="com.sam.e4.clock.ui.handlers.HelloHandler" 
+            commandId="com.sam.e4.clock.ui.command.hello">
          	<enabledWhen>
          		<reference definitionId="when.hello.is.active" />
          	</enabledWhen>
-         </handler>         
-         <handler class="com.sam.e4.clock.ui.handlers.ShowTheTime" commandId="com.sam.e4.clock.ui.command.showTheTime"/>
+        </handler>         
+        <handler class="com.sam.e4.clock.ui.handlers.ShowTheTime" 
+            commandId="com.sam.e4.clock.ui.command.showTheTime"/>
 	</extension>
 	
 	<!-- 이클립스 메뉴에 내가 원하는 메뉴를 등록 할 수 있다. 
@@ -62,6 +83,17 @@
 					</with>
 				</visibleWhen>
 			</command>
+		</menuContribution>
+		<menuContribution
+        locationURI="toolbar:com.sam.e4.clock.ui.views.TimeZoneTableView">
+     <command
+           commandId="com.sam.e4.clock.ui.command.showTheTime"
+           icon="icons/sample.png"
+           style="push">
+        <visibleWhen
+              checkEnabled="false">
+        </visibleWhen>
+     </command>
 		</menuContribution>   
 	</extension>
 	
