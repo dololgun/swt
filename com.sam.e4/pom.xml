@@ -7,7 +7,7 @@
   
   <properties>
     <tycho-version>1.7.0</tycho-version>
-    <eclipse>http://download.eclipse.org/releases/2019-03</eclipse>
+    <eclipse>http://192.168.1.250:8083/repository/p2-eclipse-latest/</eclipse>
   </properties>
   
   <repositories>
@@ -23,6 +23,7 @@
     <module>com.sam.e4.feature</module>
     <module>com.sam.e4.update</module>
     <module>com.sam.e4.application</module>
+    <module>com.sam.e4.product</module>
   </modules>
     
   <build>
