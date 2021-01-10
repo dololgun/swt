@@ -4,7 +4,7 @@
     <groupId>com.sam</groupId>
     <artifactId>com.sam.e4.parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <relativePath>../com.sam.e4.parent/pom.xml</relativePath>
+    <relativePath>../pom.xml</relativePath>
   </parent>
   <artifactId>com.sam.e4.product</artifactId>
   <packaging>eclipse-repository</packaging>

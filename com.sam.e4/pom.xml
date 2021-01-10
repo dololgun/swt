@@ -19,10 +19,10 @@
   </repositories>
 
   <modules>
-    <module>../com.sam.e4.clock.ui</module>
-    <module>../com.sam.e4.feature</module>
-    <module>../com.sam.e4.update</module>
-    <module>../com.sam.e4.application</module>
+    <module>com.sam.e4.clock.ui</module>
+    <module>com.sam.e4.feature</module>
+    <module>com.sam.e4.update</module>
+    <module>com.sam.e4.application</module>
   </modules>
     
   <build>
