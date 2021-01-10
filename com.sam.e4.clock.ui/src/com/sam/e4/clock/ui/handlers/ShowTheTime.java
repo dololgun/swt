@@ -17,26 +17,24 @@ public class ShowTheTime extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
-		// 셀렉션을 얻는다. 
+		// 셀렉션을 얻는다.
+	    // handler 이벤트에서 ISelection을 가져오는 방
 		ISelection sel = HandlerUtil.getActiveWorkbenchWindow(event).getSelectionService().getSelection();
-		
 		if (!(sel instanceof IStructuredSelection) || sel.isEmpty()) {
 			return null;
 		}
 		
+		// IStructedSelection 을 사용하는 방법
 		Object value = ((IStructuredSelection)sel).getFirstElement();
-		
 		if (!(value instanceof TimeZone)) {
 			return null;
 		}
 		
 		TimeZone timeZone = (TimeZone)value;
-		
 		SimpleDateFormat sdf = new SimpleDateFormat();
 		sdf.setTimeZone(timeZone);
 		
 		MessageDialog.openInformation(null, "The time is", sdf.format(new Date()));
-		
 		return null;
 	}
 
